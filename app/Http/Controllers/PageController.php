@@ -6,44 +6,49 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    protected function cars()
+    protected function movies()
     {
         return [
             [
-                'nama' => 'Nissan GT-R R34',
-                'tahun' => 2008,
-                'tipe' => 'JDM',
-                'warna' => 'Silver Biru',
-                'status' => 'Tersedia'
+                'judul' => 'Inception',
+                'tahun' => 2010,
+                'genre' => 'Sci-Fi / Thriller',
+                'sutradara' => 'Christopher Nolan',
+                'status' => 'Sudah Ditonton',
+                'poster' => './images/movies/inception.jpg'
             ],
             [
-                'nama' => 'Toyota Supra MK4',
-                'tahun' => 2004,
-                'tipe' => 'JDM',
-                'warna' => 'Orange',
-                'status' => 'Tersedia'
+                'judul' => 'Interstellar',
+                'tahun' => 2014,
+                'genre' => 'Adventure / Drama',
+                'sutradara' => 'Christopher Nolan',
+                'status' => 'Sudah Ditonton',
+                'poster' => './images/movies/interstellar.jpg'
             ],
             [
-                'nama' => 'Mazda RX-7 Spirit R',
-                'tahun' => 2002,
-                'tipe' => 'JDM',
-                'warna' => 'Merah',
-                'status' => 'Dipakai'
+                'judul' => 'Parasite',
+                'tahun' => 2019,
+                'genre' => 'Thriller / Drama',
+                'sutradara' => 'Bong Joon-ho',
+                'status' => 'Sudah Ditonton',
+                'poster' => './images/movies/parasite.jpg'
             ],
             [
-                'nama' => 'Lamborghini Huracan EVO',
-                'tahun' => 2023,
-                'tipe' => 'Supercar',
-                'warna' => 'Hitam',
-                'status' => 'Dibengkel'
+                'judul' => 'Spider-Man: No Way Home',
+                'tahun' => 2021,
+                'genre' => 'Action / Adventure',
+                'sutradara' => 'Jon Watts',
+                'status' => 'Ingin Ditonton Ulang',
+                'poster' => './images/movies/spiderman.jpg'
             ],
             [
-                'nama' => 'Honda NSX Type R',
-                'tahun' => 1998,
-                'tipe' => 'Classic',
-                'warna' => 'Putih',
-                'status' => 'Tersedia'
-            ],
+                'judul' => 'The Godfather',
+                'tahun' => 1972,
+                'genre' => 'Crime / Drama',
+                'sutradara' => 'Francis Ford Coppola',
+                'status' => 'Belum Ditonton',
+                'poster' => './images/movies/thegodfather.jpg'
+            ]
         ];
     }
 
@@ -68,7 +73,7 @@ class PageController extends Controller
             'password' => 'required|string'
         ]);
 
-        if ($data['username'] === 'adrian' && $data['password'] === 'adrian') {
+        if ($data['username'] === 'naura' && $data['password'] === 'naura123') {
             $request->session()->put('username', $data['username']);
             return redirect()->route('dashboard');
         }
@@ -88,8 +93,8 @@ class PageController extends Controller
             return redirect()->route('dashboard');
         }
 
-        $cars = $this->cars();
-        return view('pengelolaan', compact('cars'));
+        $movies = $this->movies();
+        return view('pengelolaan', compact('movies'));
     }
 
     public function profile(Request $request)
@@ -102,9 +107,8 @@ class PageController extends Controller
 
         $profile = [
             'username' => $username,
-            'status' => 'Kolektor Mobil Premium',
-            'hobi' => 'Mengoleksi mobil langka dan mengikuti ajang otomotif',
-            'member_since' => '2023'
+            'status' => 'Pecinta Film PlotTwist',
+            'hobi' => 'Menonton film, menulis review, dan berdiskusi tentang film',
         ];
 
         return view('profile', compact('profile'));
